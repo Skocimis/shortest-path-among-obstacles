@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.32328.378
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shortest paths among obstacles", "Shortest paths among obstacles\Shortest paths among obstacles.csproj", "{266E01B6-A9F2-4340-AC0A-E089D38DE7BC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{266E01B6-A9F2-4340-AC0A-E089D38DE7BC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{266E01B6-A9F2-4340-AC0A-E089D38DE7BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{266E01B6-A9F2-4340-AC0A-E089D38DE7BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{266E01B6-A9F2-4340-AC0A-E089D38DE7BC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {08B05D2B-B8A2-49B4-A92B-D96F43C96DDA}
+	EndGlobalSection
+EndGlobal
