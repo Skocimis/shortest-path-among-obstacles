@@ -27,7 +27,6 @@ namespace Shortest_paths_among_obstacles
             Polygon line2 = new Polygon(111, 262, 367, 235);
             //Polygons.Add(line1);
             //Polygons.Add(line2);
-
             Polygon pol = new Polygon(80, 47, 144, 139);
             pol.AddPoint(31, 184, pol.Start, pol.Start.Next);
             pol.AddPoint(124, 256, pol.Start, pol.Start.Next);
@@ -44,9 +43,9 @@ namespace Shortest_paths_among_obstacles
             start = new Vector2(154, 115);
             finish = new Vector2(312, 304);
             InitializeComponent();
-            g = pictureBox1.CreateGraphics();
             movingFinish = false;
             movingStart = false;
+            g = pictureBox1.CreateGraphics();
             render();//?
         }
 
@@ -217,6 +216,12 @@ namespace Shortest_paths_among_obstacles
                     g.DrawLine(Pens.Red, new Point((int)A.X, (int)A.Y), new Point((int)B.X, (int)B.Y));
                 }
             }
+        }
+
+        private void pictureBox1_SizeChanged(object sender, EventArgs e)
+        {
+            g = pictureBox1.CreateGraphics();
+            render();
         }
     }
 }

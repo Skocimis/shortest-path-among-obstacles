@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Numerics;
-using CSKicksCollection.Trees;
+//using CSKicksCollection.Trees;
 
 namespace Shortest_paths_among_obstacles
 {
@@ -88,8 +88,8 @@ namespace Shortest_paths_among_obstacles
                 return 0;
             });
             //Status
-            //SortedSet<StatusSegment> status = new SortedSet<StatusSegment>();
-            AVLTree<StatusSegment> status = new AVLTree<StatusSegment>();
+            SortedSet<StatusSegment> status = new SortedSet<StatusSegment>();
+            //AVLTree<StatusSegment> status = new AVLTree<StatusSegment>();
             StatusSegment.Center = start;
             StatusSegment.Angle = 0;
             //Resetovanje segmenata
@@ -198,7 +198,7 @@ namespace Shortest_paths_among_obstacles
 
             return result;
         }
-        public static bool Visible(Vector2 vertex, AVLTree<StatusSegment> status, Vector2? previous, List<Vector2> visibleVertices)
+        public static bool Visible(Vector2 vertex, SortedSet<StatusSegment> status, Vector2? previous, List<Vector2> visibleVertices)
         {
 
             //Vidljiv je ako su komsije!!!
@@ -253,11 +253,17 @@ namespace Shortest_paths_among_obstacles
                 return false;
             }
             //Mogu binarnu?
-            AVLTreeNode<StatusSegment> current = status.Root;
-            while (current != null)
+            //AVLTreeNode<StatusSegment> current = status.Root;
+            if (status.Min == null) return true;
+            if (Vector2Tools.SegmentsIntersect(status.Min.start.Position, status.Min.end.Position, vertex, StatusSegment.Center))
+                return false;
+            /*while (current != null)
             {
-
-            }
+                if(Vector2Tools.SegmentsIntersect(statusSegment.start.Position, statusSegment.end.Position, vertex, StatusSegment.Center))
+                {
+                    return
+                }
+            }*/
             /*foreach(StatusSegment statusSegment in status)
             {
 
@@ -391,7 +397,7 @@ namespace Shortest_paths_among_obstacles
                         {
                             MessageBox.Show("LOSE");
                         }
-                        g.DrawLine(Pens.Green, new Point((int)source.X, (int)source.Y), new Point((int)destination.X, (int)destination.Y));
+                        //g.DrawLine(Pens.Green, new Point((int)source.X, (int)source.Y), new Point((int)destination.X, (int)destination.Y));
                     }               
                 }
             }

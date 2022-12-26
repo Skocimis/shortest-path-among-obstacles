@@ -125,6 +125,7 @@ namespace CSKicksCollection.Trees
         public bool Remove(AVLTreeNode<T> valueNode)
         {
             //Save reference to the parent node to be removed
+            if (valueNode == null) return true;
             AVLTreeNode<T> parentNode = valueNode.Parent;
 
             //Remove the node as usual
