@@ -296,8 +296,8 @@ namespace Shortest_paths_among_obstacles
             {
                 e.Graphics.DrawLine(Pens.Red, new Point(NewPolygonPoint1.Value.X, NewPolygonPoint1.Value.Y), (Point)MouseLocation);
             }
-            PolygonRenderer.DrawPoint(start, e.Graphics, Color.Red, 8);
             PolygonRenderer.DrawPoint(finish, e.Graphics, Color.Blue, 8);
+            PolygonRenderer.DrawPoint(start, e.Graphics, Color.Red, 8);
         }
     }
 }
