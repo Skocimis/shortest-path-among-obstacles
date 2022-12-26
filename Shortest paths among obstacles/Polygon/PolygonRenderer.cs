@@ -20,21 +20,25 @@ namespace Shortest_paths_among_obstacles
         public static void DrawPolygon(Polygon polygon, Graphics graphics, int width, int height)
         {
             PolygonPoint start = polygon.Start;
-            List<Vector2> vertices = polygon.Vectices;
+            List<Vector2> vertices = polygon.Vertices;
             PointF[] points = vertices.Select(v=> new PointF(v.X, v.Y)).ToArray();
             graphics.FillPolygon(Brushes.Yellow, points);
             bool first = true;
             PolygonPoint current = start;
+            int n = 0;
+            int maxn = vertices.Count;
             while (current != start || first)
             {
+                n++;
                 first = false;
                 //Crtam duz
                 graphics.DrawLine(Pens.Black, new Point((int)current.Position.X, (int)current.Position.Y), new Point((int)current.Next.Position.X, (int)current.Next.Position.Y));
                 //Crtam tacku na curent
-                DrawPoint(current.Position, graphics, Color.Blue, 6);
+                DrawPoint(current.Position, graphics, Color.FromArgb(255*n/maxn, 255 * n / maxn, 255 * n / maxn), 6);
+                graphics.DrawString(n.ToString(), SystemFonts.DefaultFont, Brushes.Black, new Point((int)current.Position.X, (int)current.Position.Y));
                 current = current.Next;
             }
-            DrawPoint(start.Position, graphics, Color.Green, 6);
+            DrawPoint(start.Position, graphics, Color.Black, 6);
         }
     }
 }

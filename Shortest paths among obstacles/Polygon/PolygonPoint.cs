@@ -12,10 +12,13 @@ namespace Shortest_paths_among_obstacles
     {
         public Vector2 Position { get; set; }
 
+        public Polygon Polygon { get; set; }
+        public List<StatusSegment> Segments { get; set; }
+
         public PolygonPoint Previous { get; set; }
         public PolygonPoint Next { get; set; }
 
-        public PolygonPoint(float X, float Y, PolygonPoint? Previous, PolygonPoint? Next)
+        public PolygonPoint(float X, float Y, PolygonPoint? Previous, PolygonPoint? Next, Polygon polygon)
         {
             this.Position = new Vector2(X, Y);
             if (Previous == null)
@@ -34,9 +37,11 @@ namespace Shortest_paths_among_obstacles
             {
                 this.Next = Next;
             }
+            Polygon = polygon;
+            Segments = new List<StatusSegment>();
         }
 
-        public PolygonPoint(Vector2 position, PolygonPoint? Previous, PolygonPoint? Next)
+        public PolygonPoint(Vector2 position, PolygonPoint? Previous, PolygonPoint? Next, Polygon polygon)
         {
             this.Position = position;
             if (Previous == null)
@@ -55,6 +60,8 @@ namespace Shortest_paths_among_obstacles
             {
                 this.Next = Next;
             }
+            Polygon = polygon;
+            Segments = new List<StatusSegment>();
         }
 
 

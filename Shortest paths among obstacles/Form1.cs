@@ -23,12 +23,26 @@ namespace Shortest_paths_among_obstacles
         {
             DoubleBuffered = true;
             Polygons = new List<Polygon>();
+            Polygon line1 = new Polygon(90, 141, 291, 153);
+            Polygon line2 = new Polygon(111, 262, 367, 235);
+            //Polygons.Add(line1);
+            //Polygons.Add(line2);
+
+            Polygon pol = new Polygon(80, 47, 144, 139);
+            pol.AddPoint(31, 184, pol.Start, pol.Start.Next);
+            pol.AddPoint(124, 256, pol.Start, pol.Start.Next);
+            pol.AddPoint(89, 191, pol.Start, pol.Start.Next);
+            pol.AddPoint(179, 147, pol.Start, pol.Start.Next);
+            Polygons.Add(pol);
+            //Polygons.Add(line2);
+            //polygon.AddPoint(200, 100, polygon.Start, polygon.Start.Next);
+            //Polygons.Add(polygon);
             NewPolygon = false;
             NewPolygonPoint1 = null;
             NewPolygonPoint2 = null;
             MouseLocation = null;
-            start = new Vector2(100, 100);
-            finish = new Vector2(200, 200);
+            start = new Vector2(154, 115);
+            finish = new Vector2(312, 304);
             InitializeComponent();
             g = pictureBox1.CreateGraphics();
             movingFinish = false;
@@ -83,25 +97,24 @@ namespace Shortest_paths_among_obstacles
                     Vector2 projection = Vector2Tools.ProjectPointOnLine(A, Vector2Tools.GetLineDirection(A, B), P);
 
                     //polygon.AddPoint();
-                    if(Vector2.Distance(P, projection) < 10 
-                        && Vector2Tools.IsPointOnSegment(A, B, P))
+                    if(Vector2.Distance(P, projection) < 10 && projection.X < MathF.Max(A.X, B.X) && projection.X > MathF.Min(A.X, B.X) && projection.Y < MathF.Max(A.Y, B.Y) && projection.Y > MathF.Min(A.Y, B.Y))
                     {
                         //Dve uzastopne tacke ne mogu da imaju iste koordinate, treba proveriti kad se pomerajku tacke
                         if(A.X < B.X)
                         {
-                            P.Y--;
+                            P.Y-=10;
                         }
                         else if(A.X > B.X)
                         {
-                            P.Y++;
+                            P.Y+=10;
                         }
                         else if (A.Y < B.Y)
                         {
-                            P.X--;
+                            P.X-=10;
                         }
                         else
                         {
-                            P.X++;
+                            P.X+=10;
                         }
                         polygon.AddPoint(P, current, current.Next);
                         render();
@@ -193,7 +206,17 @@ namespace Shortest_paths_among_obstacles
 
         private void btnCalculatePath_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("CALCULATING PATH");
+            //MessageBox.Show("CALCULATING PATH");
+            List<Vector2> result = PathCalculator.CalculatePath(Polygons, start, finish, g);
+            if (result.Count > 1)
+            {
+                for(int i = 0; i < result.Count-1; i++)
+                {
+                    Vector2 A = result[i];
+                    Vector2 B = result[i + 1];
+                    g.DrawLine(Pens.Red, new Point((int)A.X, (int)A.Y), new Point((int)B.X, (int)B.Y));
+                }
+            }
         }
     }
 }
