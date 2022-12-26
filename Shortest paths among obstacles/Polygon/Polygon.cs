@@ -35,7 +35,6 @@ namespace Shortest_paths_among_obstacles
         }
         public List<Vector2> Vertices
         {
-            //O(n)
             get { 
                 List<Vector2> result = new List<Vector2>();
                 PolygonPoint start = Start;
