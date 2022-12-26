@@ -7,4 +7,5 @@ Drag mouse between two empty spaces - create a line, which you can later expand 
 Right click on free space - move to it following the shortest path
 Press calculate path button - show the shortest path
 
-Points in polygons have to go in clockwise order in order for algorithm to work. 
+Vertices in polygons have to go in clockwise order in order for algorithm to work. 
+The algorithm does not yet handle the case of 3 colinear vertices. 
