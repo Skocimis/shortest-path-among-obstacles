@@ -1,4 +1,3 @@
-# shortest-path-among-obstacles
 <h1>Simulation of an algorithm finding a shortest path between polygonal obstacles</h1>
 
 Controls: 
