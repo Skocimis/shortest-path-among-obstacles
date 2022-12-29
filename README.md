@@ -8,4 +8,3 @@ Right click on free space - move to it following the shortest path<br>
 Press calculate path button - show the shortest path<br><br>
 
 Vertices in polygons have to go in clockwise order in order for algorithm to work. <br>
-The algorithm does not yet handle the case of 3 colinear vertices. 
