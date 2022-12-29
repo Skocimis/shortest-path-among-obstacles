@@ -30,11 +30,11 @@ namespace Shortest_paths_among_obstacles
             Polygon line2 = new Polygon(111, 262, 367, 235);
             //Polygons.Add(line1);
             //Polygons.Add(line2);
-            Polygon pol = new Polygon(80, 47, 144, 139);
-            pol.AddPoint(31, 184, pol.Start, pol.Start.Next);
-            pol.AddPoint(124, 256, pol.Start, pol.Start.Next);
-            pol.AddPoint(89, 191, pol.Start, pol.Start.Next);
-            pol.AddPoint(179, 147, pol.Start, pol.Start.Next);
+            Polygon pol = new Polygon(200, 100, 150, 120);
+            pol.AddPoint(100, 100, pol.Start, pol.Start.Next);
+            pol.AddPoint(140, 300, pol.Start, pol.Start.Next);
+            pol.AddPoint(250, 200, pol.Start, pol.Start.Next);
+            pol.AddPoint(300, 100, pol.Start, pol.Start.Next);
             Polygons.Add(pol);
             //Polygons.Add(line2);
             //polygon.AddPoint(200, 100, polygon.Start, polygon.Start.Next);
@@ -43,7 +43,7 @@ namespace Shortest_paths_among_obstacles
             NewPolygonPoint1 = null;
             NewPolygonPoint2 = null;
             MouseLocation = null;
-            start = new Vector2(154, 115);
+            start = new Vector2(150, 100);
             finish = new Vector2(312, 304);
             InitializeComponent();
             movingFinish = false;
@@ -183,7 +183,7 @@ namespace Shortest_paths_among_obstacles
             Vector2 P = new Vector2(e.X, e.Y);
             finish = P;
             bool successful;
-            currentPath = PathCalculator.CalculatePath(Polygons, start, finish, ref timer1, out successful);
+            currentPath = PathCalculator.CalculatePath(Polygons, start, finish, ref timer1, out successful, pictureBox1.CreateGraphics());
             if (!successful) return;
             currentPath.Remove(currentPath[0]);
             timer1.Start();
@@ -245,7 +245,7 @@ namespace Shortest_paths_among_obstacles
             Graphics g = pictureBox1.CreateGraphics();
             timer1.Stop();
             bool successful;
-            List<Vector2> result = PathCalculator.CalculatePath(Polygons, start, finish, ref timer1, out successful);
+            List<Vector2> result = PathCalculator.CalculatePath(Polygons, start, finish, ref timer1, out successful, pictureBox1.CreateGraphics());
             if (!successful) return;
             if (result.Count > 1)
             {

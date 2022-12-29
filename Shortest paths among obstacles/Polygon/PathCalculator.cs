@@ -217,7 +217,7 @@ namespace Shortest_paths_among_obstacles
             }
             throw new Exception("Path not found");
         }
-        public static List<Vector2> CalculatePath(List<Polygon> polygons, Vector2 p, Vector2 q, ref System.Windows.Forms.Timer timer,  out bool successful)
+        public static List<Vector2> CalculatePath(List<Polygon> polygons, Vector2 p, Vector2 q, ref System.Windows.Forms.Timer timer,  out bool successful, Graphics graphics)
         {
             successful = true;
             if (p == q) return new List<Vector2> { p, q };
@@ -242,16 +242,21 @@ namespace Shortest_paths_among_obstacles
             {
                 foreach (Vector2 destination in visibilityGraph[source].Keys)
                 {
-                    if (!visibilityGraph[destination].ContainsKey(source) || visibilityGraph[destination][source] != visibilityGraph[source][destination])
+                    if (!visibilityGraph[destination].ContainsKey(source))
                     {
-                        //MessageBox.Show("A polygon was not build correctly. ");
+                        visibilityGraph[destination][source] = visibilityGraph[source][destination];
+                    }
+                    if(visibilityGraph[destination][source] != visibilityGraph[source][destination])
+                    {
                         successful = false;
-                        timer.Stop();
-                        return new List<Vector2> { p, q };
                     }
                 }
             }
-
+            if (!successful)
+            {
+                timer.Stop();
+                return new List<Vector2> { p, q };
+            }
             return Dijkstra(visibilityGraph, p, q);
         }
 
